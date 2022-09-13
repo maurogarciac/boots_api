@@ -1,3 +1,9 @@
+GET http://localhost:8080/hello-world-bean
+
+<> 2022-09-13T133112.200.json
+
+###
+
 GET http://localhost/hello-world
 
 ###
