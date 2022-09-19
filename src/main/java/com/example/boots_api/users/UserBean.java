@@ -3,7 +3,7 @@ package com.example.boots_api.users;
 import java.util.Date;
 
 
-public class User {
+public class UserBean {
 
     //private User user;
     private String userName;
@@ -11,7 +11,7 @@ public class User {
     private Date dateOfBirth;
     
 
-    public User(String user_name, String real_name, Date date_of_birth) {
+    public UserBean(String user_name, String real_name, Date date_of_birth) {
         userName = user_name;
         realName = real_name;
         dateOfBirth = date_of_birth;  
