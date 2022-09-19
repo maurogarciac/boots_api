@@ -3,6 +3,8 @@ package com.example.boots_api;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.example.boots_api.users.User;
+
 import java.util.ArrayList;
 import java.util.List;
 
