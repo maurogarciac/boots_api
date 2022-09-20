@@ -12,27 +12,9 @@ import com.example.boots_api.users.UserBean;
 @Repository("fakeDB")
 public class UserCreation implements UserBeanDao{
     
-    private List<UserBean> DB = new ArrayList<>();
+    public static List<UserBean> DB = new ArrayList<>();
 
-    public UserCreation(){
-    }
-
-    public List<UserBean> createUsers(){
-        List<UserBean> users = new ArrayList<>();
-        UserBean user;
-
-        for(int i = 0; i >= 5; i++){
-            user = new UserBean(usernameList[i], realNameList[i], randomDate());
-            users.add(user);
-        }
-        this.DB.addAll(users);
-        return users;
-    }
-
-    String[] usernameList = {"cooldog", "angrycat", "madangler", "spicybird", "naughtyferret", "goodrabbit"};
-    String[] realNameList = {"Mauro Garcia", "Ignacio Elia", "Ricardo Ferrari", "Lucas Diaz", "Luciana Cappa", "Paula Gammarota"};
-    
-    private Date randomDate(){
+    public Date randomDate(){
         Date dob;
         Calendar cal = Calendar.getInstance();
 
@@ -45,13 +27,13 @@ public class UserCreation implements UserBeanDao{
         return dob;
     }
 
-    public static int randBetween(int start, int end) {
+    private static int randBetween(int start, int end) {
         return start + (int)Math.round(Math.random() * (end - start));
     }
 
     @Override
     public int insertUserBean(UserBean user) {
-        DB.add(new UserBean(user.getUserName(), user.getRealName(), user.getDateOfBirth()));
+        DB.add(new UserBean(user.getUserName(), user.getRealName(), user.getDateOfBirth().toString()));
         return 1;
     }
 

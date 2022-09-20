@@ -32,12 +32,11 @@ public class UserController {
         cal.set(Calendar.YEAR, 1988);
         cal.set(Calendar.MONTH, Calendar.JANUARY);
         cal.set(Calendar.DAY_OF_MONTH, 1); 
-        Date dob = cal.getTime();
-        return new UserBean("maugc", "Mauro Garcia Coto", dob);
+        //Date dob = cal.getTime();
+        return new UserBean("maurogarciac", "Mauro Garcia Coto", "01-02-1988");
     }
     @RequestMapping(value="/user-list", method=RequestMethod.GET)
     public List<UserBean> getAllUsers() {
-        UserCreation uC = new UserCreation();
-        return uC.createUsers();
+        return UserCreation.DB;
     }
 }

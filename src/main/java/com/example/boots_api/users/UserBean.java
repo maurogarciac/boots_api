@@ -1,5 +1,7 @@
 package com.example.boots_api.users;
 
+import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -8,19 +10,17 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class UserBean {
 
-    //private User user;
     private String userName;
     private String realName;
     private Date dateOfBirth;
     
 
-    public UserBean(@JsonProperty("username")String user_name, 
+    public UserBean(@JsonProperty("userName")String user_name, 
                     @JsonProperty("realName")String real_name, 
-                    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
-                    @JsonProperty("dateOfBirth")Date date_of_birth) {
+                    @JsonProperty("dateOfBirth")String date_of_birth) {
         userName = user_name;
         realName = real_name;
-        dateOfBirth = date_of_birth;  
+        dateOfBirth = getDate(date_of_birth);
     }
     public void setUserName(String uN){
         userName = uN;   
@@ -39,5 +39,15 @@ public class UserBean {
     } 
     public Date getDateOfBirth(){
         return dateOfBirth;
+    }
+    private Date getDate(String date){
+        Calendar cal = Calendar.getInstance();
+
+        int[] dmy = Arrays.stream(date.split("-")).mapToInt(Integer::valueOf).toArray();
+
+        cal.set(Calendar.YEAR, dmy[2]);
+        cal.set(Calendar.MONTH, dmy[1]);
+        cal.set(Calendar.DAY_OF_MONTH, dmy[0]);
+        return cal.getTime();
     }
 }
