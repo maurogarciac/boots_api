@@ -2,6 +2,9 @@ package com.example.boots_api.users;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 
 public class UserBean {
 
@@ -11,7 +14,10 @@ public class UserBean {
     private Date dateOfBirth;
     
 
-    public UserBean(String user_name, String real_name, Date date_of_birth) {
+    public UserBean(@JsonProperty("username")String user_name, 
+                    @JsonProperty("realName")String real_name, 
+                    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
+                    @JsonProperty("dateOfBirth")Date date_of_birth) {
         userName = user_name;
         realName = real_name;
         dateOfBirth = date_of_birth;  
