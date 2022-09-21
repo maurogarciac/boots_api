@@ -38,7 +38,7 @@ public class UserController {
     public List<Visit> retrieveAllVisits(){
         return service.findAllVisits();
     }
-    @GetMapping("/visits/user_id={id}")
+    @GetMapping("/visits?user_id={id}")
     public List<Visit> retrieveVisitByID(@PathVariable int id){
         return service.findVisitsByUser(service.findOnebyId(id));
     }
@@ -50,8 +50,8 @@ public class UserController {
     public void createVisit(@RequestBody User user){
         service.saveVisit(user);
     }
-    @PostMapping("/visits")
-    public void createVisitByUsername(@RequestBody String username){
+    @PostMapping("/visits/username={username}")
+    public void createVisitByUsername(@PathVariable String username){
         service.saveVisitByUsername(username);
     }
 

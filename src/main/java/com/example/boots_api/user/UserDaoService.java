@@ -20,9 +20,9 @@ public class UserDaoService {
         users.add(new User(++userCount, "aulop", "Aurelio Lopez", LocalDate.now().minusYears(20)));
         users.add(new User(++userCount, "maling", "Mario Linguini", LocalDate.now().minusYears(25)));
         users.add(new User(++userCount, "Roboca", "Roberto Casanza", LocalDate.now().minusYears(30)));
-        visits.add(new Visit(++visitCount, users.get(visitCount), LocalDate.now().minusDays(1)));
-        visits.add(new Visit(++visitCount, users.get(visitCount), LocalDate.now().minusDays(2)));
-        visits.add(new Visit(++visitCount, users.get(visitCount), LocalDate.now().minusDays(5)));
+        visits.add(new Visit(++visitCount, users.get(0), LocalDate.now().minusDays(1)));
+        visits.add(new Visit(++visitCount, users.get(1), LocalDate.now().minusDays(2)));
+        visits.add(new Visit(++visitCount, users.get(2), LocalDate.now().minusDays(5)));
         visits.add(new Visit(++visitCount, users.get(0), LocalDate.now().minusDays(12)));
         visits.add(new Visit(++visitCount, users.get(1), LocalDate.now().minusDays(17)));
     }
