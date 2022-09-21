@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -21,11 +22,11 @@ public class UserController {
     public List<User> retrieveAllUsers(){
         return service.findAll();
     }
-    @GetMapping("/users/{id}")
+    @GetMapping("/users/id/{id}")
     public User retrieveUserById(@PathVariable int id){
         return service.findOnebyId(id);
     }
-    @GetMapping("/users/{username}")
+    @GetMapping("/users/username/{username}")
     public User retrieveUserByUsername(@PathVariable String username){
         return service.findOnebyUsername(username);
     }
@@ -33,27 +34,10 @@ public class UserController {
     public void createUser(@RequestBody User user){
         service.saveUser(user);
     }
-    
-    @GetMapping("/visits/all")
-    public List<Visit> retrieveAllVisits(){
-        return service.findAllVisits();
-    }
-    @GetMapping("/visits?user_id={id}")
-    public List<Visit> retrieveVisitByID(@PathVariable int id){
-        return service.findVisitsByUser(service.findOnebyId(id));
-    }
-    @GetMapping("/visits/username={username}")
-    public List<Visit> retrieveVisitByUsername(@PathVariable String username){
-        return service.findVisitsByUser(service.findOnebyUsername(username));
-    }
-    @PostMapping("/visits")
-    public void createVisit(@RequestBody User user){
-        service.saveVisit(user);
-    }
-    @PostMapping("/visits/username={username}")
-    public void createVisitByUsername(@PathVariable String username){
-        service.saveVisitByUsername(username);
-    }
+    //falta un put tambien por ahi - para poder updatear los datos del usario
+    //y un delete para eliminar los usuarios
+    //el PUT recibe un ID y el POST crea un usuario
+
 
 
 }

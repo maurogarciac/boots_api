@@ -11,22 +11,15 @@ import org.springframework.stereotype.Component;
 public class UserDaoService {
 
     private static List<User> users = new ArrayList<>();
-    private static Integer userCount = 0;
-
-    private static List<Visit> visits = new ArrayList<>();
-    private static Integer visitCount = 0;
+    private static Integer lastUserId = 0;
     
     static{
-        users.add(new User(++userCount, "aulop", "Aurelio Lopez", LocalDate.now().minusYears(20)));
-        users.add(new User(++userCount, "maling", "Mario Linguini", LocalDate.now().minusYears(25)));
-        users.add(new User(++userCount, "Roboca", "Roberto Casanza", LocalDate.now().minusYears(30)));
-        visits.add(new Visit(++visitCount, users.get(0), LocalDate.now().minusDays(1)));
-        visits.add(new Visit(++visitCount, users.get(1), LocalDate.now().minusDays(2)));
-        visits.add(new Visit(++visitCount, users.get(2), LocalDate.now().minusDays(5)));
-        visits.add(new Visit(++visitCount, users.get(0), LocalDate.now().minusDays(12)));
-        visits.add(new Visit(++visitCount, users.get(1), LocalDate.now().minusDays(17)));
-    }
+        users.add(new User(++lastUserId, "aulop", "Aurelio Lopez", LocalDate.now().minusYears(20)));
+        users.add(new User(++lastUserId, "maling", "Mario Linguini", LocalDate.now().minusYears(25)));
+        users.add(new User(++lastUserId, "Roboca", "Roberto Casanza", LocalDate.now().minusYears(30)));
 
+    }
+    //dont look into berkeley DBs
     public List<User> findAll(){
         return users;
     }
@@ -39,26 +32,8 @@ public class UserDaoService {
         return users.stream().filter(predicate).findFirst().get();
     }
     public User saveUser(User user){
-        user.setId(++userCount);
+        user.setId(++lastUserId);
         users.add(user);
         return user;
-    }
-    
-    public List<Visit> findAllVisits(){
-        return visits;
-    }
-    public List<Visit> findVisitsByUser(User user){
-        Predicate<? super Visit> predicate = visit -> visit.getUser().equals(user);
-        return visits.stream().filter(predicate).toList();
-    }
-    public Visit saveVisit(User user){
-        Visit visit = new Visit(++visitCount, user, LocalDate.now());
-        visits.add(visit);
-        return visit;
-    }
-    public Visit saveVisitByUsername(String username){
-        Visit visit = new Visit(++visitCount, findOnebyUsername(username), LocalDate.now());
-        visits.add(visit);
-        return visit;
     }
 }

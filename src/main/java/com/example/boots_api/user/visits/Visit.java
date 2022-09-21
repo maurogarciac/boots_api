@@ -1,7 +1,8 @@
-package com.example.boots_api.user;
+package com.example.boots_api.user.visits;
 
 import java.time.LocalDate;
 
+import com.example.boots_api.user.User;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Visit {
