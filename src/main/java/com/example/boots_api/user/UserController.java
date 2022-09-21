@@ -1,13 +1,18 @@
 package com.example.boots_api.user;
 
+import java.net.URI;
+import java.time.LocalDate;
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
 public class UserController {
@@ -24,20 +29,44 @@ public class UserController {
     }
     @GetMapping("/users/id/{id}")
     public User retrieveUserById(@PathVariable int id){
-        return service.findOnebyId(id);
+        User user = service.findOnebyId(id);
+        if(user==null)throw new UserNotFoundException("id:" + id);
+        return user;
     }
     @GetMapping("/users/username/{username}")
     public User retrieveUserByUsername(@PathVariable String username){
-        return service.findOnebyUsername(username);
+        User user = service.findOnebyUsername(username);
+        if(user==null)throw new UserNotFoundException("username:" + username);
+        return user;
     }
     @PostMapping("/users")
-    public void createUser(@RequestBody User user){
-        service.saveUser(user);
+    public ResponseEntity<User> createUser(@RequestBody User user){
+        User createdUser = service.saveUser(user);
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/id/{id}").buildAndExpand(createdUser.getId()).toUri(); 
+        return ResponseEntity.created(location).build();
     }
-    //falta un put tambien por ahi - para poder updatear los datos del usario
+    @PutMapping("/users/id/{id}")
+    public ResponseEntity<User> modifyUser(@PathVariable int id, @RequestBody String username, @RequestBody String name, @RequestBody LocalDate birthDate){
+        User user = service.findOnebyId(id);
+        if(name != null){
+            user.setName(name);
+        }
+        if(username != null){
+            user.setUsername(username);
+        }
+        if(birthDate != null){
+            user.setBirthDate(birthDate);
+        }
+        return ResponseEntity.ok(user);
+    }
     //y un delete para eliminar los usuarios
-    //el PUT recibe un ID y el POST crea un usuario
-
-
+    @DeleteMapping("/users/id/{id}")
+    public void deleteById(@PathVariable int id){
+        service.deleteById(id);
+    }
+    @DeleteMapping("/users/username/{username}")
+    public void deleteByUsername(@PathVariable String username){
+        service.deleteByUsername(username);
+    }
 
 }

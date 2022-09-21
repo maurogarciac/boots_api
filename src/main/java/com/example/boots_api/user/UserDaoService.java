@@ -25,15 +25,23 @@ public class UserDaoService {
     }
     public User findOnebyId(Integer id){
         Predicate<? super User> predicate = user -> user.getId().equals(id);
-        return users.stream().filter(predicate).findFirst().get();
+        return users.stream().filter(predicate).findFirst().orElse(null);
     }
     public User findOnebyUsername(String username){
         Predicate<? super User> predicate = user -> user.getUsername().equals(username);
-        return users.stream().filter(predicate).findFirst().get();
+        return users.stream().filter(predicate).findFirst().orElse(null);
     }
     public User saveUser(User user){
         user.setId(++lastUserId);
         users.add(user);
         return user;
+    }
+    public void deleteById(Integer id){
+        Predicate<? super User> predicate = user -> user.getId().equals(id);
+        users.removeIf(predicate);
+    }
+    public void deleteByUsername(String username){
+        Predicate<? super User> predicate = user -> user.getUsername().equals(username);
+        users.removeIf(predicate);
     }
 }
