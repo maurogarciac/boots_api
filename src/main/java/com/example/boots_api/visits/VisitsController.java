@@ -1,4 +1,4 @@
-package com.example.boots_api.user.visits;
+package com.example.boots_api.visits;
 
 import com.example.boots_api.user.User;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,11 +23,11 @@ public class VisitsController {
     }
     @GetMapping("/visits")
     public List<Visit> retrieveVisitByUserID(@RequestParam("user_id") int userId){
-        return visitsService.findVisitsByUser(findOnebyId(userId));
+        return visitsService.findVisitsByUserId(userId);
     }
     @GetMapping("/visits/username/{username}")
     public List<Visit> retrieveVisitByUsername(@PathVariable String username){
-        return visitsService.findVisitsByUser(findOnebyUsername(username));
+        return visitsService.findVisitsByUsername(username);
     }
     @PostMapping("/visits")
     public void createVisit(@RequestBody User user){

@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.example.boots_api.GeneralDaoService;
+
 @RestController
 public class UserController {
     
@@ -29,13 +31,13 @@ public class UserController {
     }
     @GetMapping("/users/id/{id}")
     public User retrieveUserById(@PathVariable int id){
-        User user = service.findOnebyId(id);
+        User user = GeneralDaoService.findOneById(id);
         if(user==null)throw new UserNotFoundException("id:" + id);
         return user;
     }
     @GetMapping("/users/username/{username}")
     public User retrieveUserByUsername(@PathVariable String username){
-        User user = service.findOnebyUsername(username);
+        User user = GeneralDaoService.findOneByUsername(username);
         if(user==null)throw new UserNotFoundException("username:" + username);
         return user;
     }
@@ -47,7 +49,7 @@ public class UserController {
     }
     @PutMapping("/users/id/{id}")
     public ResponseEntity<User> modifyUser(@PathVariable int id, @RequestBody String username, @RequestBody String name, @RequestBody LocalDate birthDate){
-        User user = service.findOnebyId(id);
+        User user = GeneralDaoService.findOneById(id);
         if(name != null){
             user.setName(name);
         }
@@ -59,7 +61,6 @@ public class UserController {
         }
         return ResponseEntity.ok(user);
     }
-    //y un delete para eliminar los usuarios
     @DeleteMapping("/users/id/{id}")
     public void deleteById(@PathVariable int id){
         service.deleteById(id);

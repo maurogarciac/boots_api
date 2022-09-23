@@ -1,4 +1,4 @@
-package com.example.boots_api.user.visits;
+package com.example.boots_api.visits;
 
 import java.time.LocalDate;
 
@@ -11,9 +11,9 @@ public class Visit {
     private User user;
     private LocalDate visitDate;
 
-    public Visit(@JsonProperty("visitId")Integer visitId,
+    public Visit(@JsonProperty("visit_id")Integer visitId,
                 @JsonProperty("user")User user,
-                @JsonProperty("visitDate")LocalDate visitDate){
+                @JsonProperty("visit_date")LocalDate visitDate){
         super();
         this.visitId = visitId;
         this.user = user;

@@ -12,9 +12,9 @@ public class User {
     private LocalDate birthDate;
 
     public User(@JsonProperty("id")Integer id, 
-                @JsonProperty("userName")String userName, 
+                @JsonProperty("user_name")String userName, 
                 @JsonProperty("name")String name, 
-                @JsonProperty("birthDate")LocalDate birthDate){
+                @JsonProperty("birth_date")LocalDate birthDate){
         super();
         this.id = id;
         this.userName = userName;
