@@ -1,4 +1,4 @@
-package com.example.boots_api.user;
+package com.example.boots_api.beans;
 
 import java.time.LocalDate;
 

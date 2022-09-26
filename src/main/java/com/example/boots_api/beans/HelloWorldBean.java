@@ -1,4 +1,4 @@
-package com.example.boots_api.helloworld;
+package com.example.boots_api.beans;
 
 public class HelloWorldBean {
     private String message;

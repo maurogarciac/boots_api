@@ -1,10 +1,11 @@
-package com.example.boots_api.visits;
+package com.example.boots_api.services;
 
-import com.example.boots_api.user.User;
-import com.example.boots_api.GeneralDaoService;
+import com.example.boots_api.beans.User;
+import com.example.boots_api.beans.Visit;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.function.Predicate;
 
 import org.springframework.stereotype.Component;
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class VisitsDaoService {
     
-    private static List<Visit> visits = GeneralDaoService.getVisitsList();
+    private static ConcurrentLinkedQueue<Visit> visits = GeneralDaoService.getVisitsList();
     private static Integer lastVisitId = 0;
 
     static{
@@ -20,7 +21,7 @@ public class VisitsDaoService {
         visits.add(new Visit(++lastVisitId, GeneralDaoService.findOneById(0), LocalDate.now()));
         visits.add(new Visit(++lastVisitId, GeneralDaoService.findOneById(0), LocalDate.now()));
     }
-    public List<Visit> findAllVisits(){
+    public ConcurrentLinkedQueue<Visit> findAllVisits(){
         return visits;
     }
     public List<Visit> findVisitsByUsername(String username){

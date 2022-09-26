@@ -1,8 +1,10 @@
-package com.example.boots_api.helloworld;
+package com.example.boots_api.controllers;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.example.boots_api.beans.HelloWorldBean;
 
 @RestController
 public class HelloWorldController {

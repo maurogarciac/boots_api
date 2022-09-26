@@ -1,20 +1,19 @@
-package com.example.boots_api;
+package com.example.boots_api.services;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.function.Predicate;
 
 import org.springframework.stereotype.Controller;
 
-import com.example.boots_api.user.User;
-import com.example.boots_api.visits.Visit;
+import com.example.boots_api.beans.User;
+import com.example.boots_api.beans.Visit;
 
 @Controller
 public class GeneralDaoService {
 
     protected static volatile GeneralDaoService instance;
-    private static List<User> userDB = new ArrayList<>();
-    private static List<Visit> visitDB = new ArrayList<>();
+    private static ConcurrentLinkedQueue<User> userDB = new ConcurrentLinkedQueue<>();
+    private static ConcurrentLinkedQueue<Visit> visitDB = new ConcurrentLinkedQueue<>();
     
     private GeneralDaoService(){}
 
@@ -29,11 +28,11 @@ public class GeneralDaoService {
         return instance;
     }
 
-    public static List<User> getUserList(){
+    public static ConcurrentLinkedQueue<User> getUserList(){
         System.out.println("The users list has been requested");
         return userDB;
     }
-    public static List<Visit> getVisitsList(){
+    public static ConcurrentLinkedQueue<Visit> getVisitsList(){
         System.out.println("The visits list as been requested");
         return visitDB;
     }

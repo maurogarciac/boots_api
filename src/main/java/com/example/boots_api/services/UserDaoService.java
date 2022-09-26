@@ -1,18 +1,18 @@
-package com.example.boots_api.user;
+package com.example.boots_api.services;
 
 import java.time.LocalDate;
 
-import java.util.List;
+import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.function.Predicate;
 
 import org.springframework.stereotype.Component;
 
-import com.example.boots_api.GeneralDaoService;
+import com.example.boots_api.beans.User;
 
 @Component
 public class UserDaoService {
 
-    private static List<User> users = GeneralDaoService.getUserList();
+    private static ConcurrentLinkedQueue<User> users = GeneralDaoService.getUserList();
     private static Integer lastUserId = 0;
     
     static{
@@ -22,7 +22,7 @@ public class UserDaoService {
 
     }
     //dont look into berkeley DBs
-    public List<User> findAll(){
+    public ConcurrentLinkedQueue<User> findAll(){
         return users;
     }
     public User saveUser(User user){

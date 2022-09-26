@@ -1,4 +1,4 @@
-package com.example.boots_api.user;
+package com.example.boots_api;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

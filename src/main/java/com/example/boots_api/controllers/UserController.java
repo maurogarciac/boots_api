@@ -1,8 +1,8 @@
-package com.example.boots_api.user;
+package com.example.boots_api.controllers;
 
 import java.net.URI;
 import java.time.LocalDate;
-import java.util.List;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,7 +14,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.example.boots_api.GeneralDaoService;
+import com.example.boots_api.UserNotFoundException;
+import com.example.boots_api.beans.User;
+import com.example.boots_api.services.GeneralDaoService;
+import com.example.boots_api.services.UserDaoService;
 
 @RestController
 public class UserController {
@@ -26,7 +29,7 @@ public class UserController {
     }
 
     @GetMapping("/users")
-    public List<User> retrieveAllUsers(){
+    public ConcurrentLinkedQueue<User> retrieveAllUsers(){
         return service.findAll();
     }
     @GetMapping("/users/id/{id}")
