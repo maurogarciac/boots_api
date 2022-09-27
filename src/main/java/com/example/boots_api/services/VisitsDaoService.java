@@ -14,12 +14,12 @@ import org.springframework.stereotype.Component;
 public class VisitsDaoService {
     
     private static ConcurrentLinkedQueue<Visit> visits = GeneralDaoService.getVisitsList();
-    private static Integer lastVisitId = 0;
+    private static Integer lastVisitId = -1;
 
     static{
         visits.add(new Visit(++lastVisitId, GeneralDaoService.findOneById(0), LocalDate.now()));
-        visits.add(new Visit(++lastVisitId, GeneralDaoService.findOneById(0), LocalDate.now()));
-        visits.add(new Visit(++lastVisitId, GeneralDaoService.findOneById(0), LocalDate.now()));
+        visits.add(new Visit(++lastVisitId, GeneralDaoService.findOneById(1), LocalDate.now()));
+        visits.add(new Visit(++lastVisitId, GeneralDaoService.findOneById(2), LocalDate.now()));
     }
     public ConcurrentLinkedQueue<Visit> findAllVisits(){
         return visits;

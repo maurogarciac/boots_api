@@ -19,6 +19,8 @@ import com.example.boots_api.beans.User;
 import com.example.boots_api.services.GeneralDaoService;
 import com.example.boots_api.services.UserDaoService;
 
+//no hacer un linter custom
+
 @RestController
 public class UserController {
     

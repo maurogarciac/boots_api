@@ -13,13 +13,12 @@ import com.example.boots_api.beans.User;
 public class UserDaoService {
 
     private static ConcurrentLinkedQueue<User> users = GeneralDaoService.getUserList();
-    private static Integer lastUserId = 0;
+    private static Integer lastUserId = -1;
     
     static{
         users.add(new User(++lastUserId, "aulop", "Aurelio Lopez", LocalDate.now().minusYears(20)));
         users.add(new User(++lastUserId, "maling", "Mario Linguini", LocalDate.now().minusYears(25)));
         users.add(new User(++lastUserId, "Roboca", "Roberto Casanza", LocalDate.now().minusYears(30)));
-
     }
     //dont look into berkeley DBs
     public ConcurrentLinkedQueue<User> findAll(){

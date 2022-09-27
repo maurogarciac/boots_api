@@ -2,6 +2,7 @@ package com.example.boots_api.beans;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class User {
@@ -14,6 +15,7 @@ public class User {
     public User(@JsonProperty("id")Integer id, 
                 @JsonProperty("user_name")String userName, 
                 @JsonProperty("name")String name, 
+                @JsonFormat(pattern="yyyy-MM-dd")
                 @JsonProperty("birth_date")LocalDate birthDate){
         super();
         this.id = id;

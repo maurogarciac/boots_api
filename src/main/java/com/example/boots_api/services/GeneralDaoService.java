@@ -39,9 +39,8 @@ public class GeneralDaoService {
 
     public static User findOneById(Integer id){
         Predicate<? super User> predicate = user -> user.getId().equals(id);
-        User user = userDB.stream().filter(predicate).findFirst().orElse(null);
-        System.out.println("A user has been requested " + user);
-        return user;
+        System.out.println("user has been requested");
+        return userDB.stream().filter(predicate).findFirst().orElse(null);
     }
     public static User findOneByUsername(String username){
         Predicate<? super User> predicate = user -> user.getUsername().equals(username);
