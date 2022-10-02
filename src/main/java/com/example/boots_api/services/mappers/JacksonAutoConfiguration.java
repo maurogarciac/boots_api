@@ -4,7 +4,9 @@ package com.example.boots_api.services.mappers;
 
 //@Bean
 public class JacksonAutoConfiguration {
- 
+    public JacksonAutoConfiguration(){
+        
+    }
     
 // fijarme en autoconfiguracion yyyy-MM-dd
 //jackson es una biblioteca que se usa para transformacion de y a JSON

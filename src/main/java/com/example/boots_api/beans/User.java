@@ -1,6 +1,6 @@
 package com.example.boots_api.beans;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -10,13 +10,13 @@ public class User {
     private Integer id;
     private String userName;
     private String name;
-    private LocalDate birthDate;
+    private Date birthDate;
 
     public User(@JsonProperty("id")Integer id, 
                 @JsonProperty("user_name")String userName, 
                 @JsonProperty("name")String name, 
                 @JsonFormat(pattern="yyyy-MM-dd")
-                @JsonProperty("birth_date")LocalDate birthDate){
+                @JsonProperty("birth_date")Date birthDate){
         super();
         this.id = id;
         this.userName = userName;
@@ -42,10 +42,10 @@ public class User {
     public void setName(String name){
         this.name = name;
     }
-    public LocalDate getBirthDate(){
+    public Date getBirthDate(){
         return birthDate;
     }
-    public void setBirthDate(LocalDate birthDate){
+    public void setBirthDate(Date birthDate){
         this.birthDate = birthDate;
     }
     @Override

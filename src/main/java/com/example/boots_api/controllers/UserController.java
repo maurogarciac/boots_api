@@ -1,7 +1,7 @@
 package com.example.boots_api.controllers;
 
 import java.net.URI;
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import org.springframework.http.ResponseEntity;
@@ -19,7 +19,7 @@ import com.example.boots_api.beans.User;
 import com.example.boots_api.services.GeneralDaoService;
 import com.example.boots_api.services.UserDaoService;
 
-//no hacer un linter custom
+//Don't make a custom linter
 
 @RestController
 public class UserController {
@@ -53,7 +53,7 @@ public class UserController {
         return ResponseEntity.created(location).build();
     }
     @PutMapping("/users/id/{id}")
-    public ResponseEntity<User> modifyUser(@PathVariable int id, @RequestBody String username, @RequestBody String name, @RequestBody LocalDate birthDate){
+    public ResponseEntity<User> modifyUser(@PathVariable int id, @RequestBody String username, @RequestBody String name, @RequestBody Date birthDate){
         User user = GeneralDaoService.findOneById(id);
         if(name != null){
             user.setName(name);

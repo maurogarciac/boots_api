@@ -1,6 +1,6 @@
 package com.example.boots_api.beans;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -8,11 +8,11 @@ public class Visit {
     
     private Integer visitId;
     private User user;
-    private LocalDate visitDate;
+    private Date visitDate;
 
     public Visit(@JsonProperty("visit_id")Integer visitId,
                 @JsonProperty("user")User user,
-                @JsonProperty("visit_date")LocalDate visitDate){
+                @JsonProperty("visit_date")Date visitDate){
         super();
         this.visitId = visitId;
         this.user = user;
@@ -31,10 +31,10 @@ public class Visit {
     public void setUser(User user){
         this.user = user;
     }
-    public LocalDate getVisitDate(){
+    public Date getVisitDate(){
         return visitDate;
     }
-    public void setVisitDate(LocalDate visitDate){
+    public void setVisitDate(Date visitDate){
         this.visitDate = visitDate;
     }
     @Override

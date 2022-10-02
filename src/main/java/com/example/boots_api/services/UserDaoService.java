@@ -1,7 +1,6 @@
 package com.example.boots_api.services;
-
-import java.time.LocalDate;
-
+ 
+import java.util.Date;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.function.Predicate;
 
@@ -9,18 +8,21 @@ import org.springframework.stereotype.Component;
 
 import com.example.boots_api.beans.User;
 
+//dont look into berkeley DBs
+
 @Component
 public class UserDaoService {
 
     private static ConcurrentLinkedQueue<User> users = GeneralDaoService.getUserList();
     private static Integer lastUserId = -1;
+    private static Date dateNow = GeneralDaoService.dateRightNow();
     
     static{
-        users.add(new User(++lastUserId, "aulop", "Aurelio Lopez", LocalDate.now().minusYears(20)));
-        users.add(new User(++lastUserId, "maling", "Mario Linguini", LocalDate.now().minusYears(25)));
-        users.add(new User(++lastUserId, "Roboca", "Roberto Casanza", LocalDate.now().minusYears(30)));
+        users.add(new User(++lastUserId, "aulop", "Aurelio Lopez", dateNow));
+        users.add(new User(++lastUserId, "maling", "Mario Linguini", dateNow));
+        users.add(new User(++lastUserId, "Roboca", "Roberto Casanza", dateNow));
     }
-    //dont look into berkeley DBs
+    
     public ConcurrentLinkedQueue<User> findAll(){
         return users;
     }
