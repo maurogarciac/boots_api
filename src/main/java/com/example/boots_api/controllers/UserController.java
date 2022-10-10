@@ -2,7 +2,7 @@ package com.example.boots_api.controllers;
 
 import java.net.URI;
 import java.util.Date;
-import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -31,7 +31,7 @@ public class UserController {
     }
 
     @GetMapping("/users")
-    public ConcurrentLinkedQueue<User> retrieveAllUsers(){
+    public List<User> retrieveAllUsers(){
         return service.findAll();
     }
     @GetMapping("/users/id/{id}")

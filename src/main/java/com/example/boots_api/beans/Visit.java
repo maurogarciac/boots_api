@@ -2,16 +2,18 @@ package com.example.boots_api.beans;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Visit {
     
     private Integer visitId;
-    private User user;
-    private Date visitDate;
+    @JsonProperty("user")private User user;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")@JsonProperty("visit_date")private Date visitDate;
 
     public Visit(@JsonProperty("visit_id")Integer visitId,
                 @JsonProperty("user")User user,
+                @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
                 @JsonProperty("visit_date")Date visitDate){
         super();
         this.visitId = visitId;
