@@ -1,7 +1,6 @@
 package com.example.boots_api.services;
  
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.function.Predicate;
@@ -17,13 +16,18 @@ public class UserDaoService {
 
     private static ConcurrentLinkedQueue<User> users = GeneralDaoService.getUserList();
     private static Integer lastUserId = -1;
+    
+    /*
     private static Date dateNow = GeneralDaoService.dateRightNow(false);
     
+    
     static{
-        users.add(new User(++lastUserId, "aulop", "Aurelio Lopez", dateNow));
-        users.add(new User(++lastUserId, "maling", "Mario Linguini", dateNow));
-        users.add(new User(++lastUserId, "Roboca", "Roberto Casanza", dateNow));
+    users.add(new User(++lastUserId, "aulop", "Aurelio Lopez", dateNow));
+    users.add(new User(++lastUserId, "maling", "Mario Linguini", dateNow));
+    users.add(new User(++lastUserId, "Roboca", "Roberto Casanza", dateNow));
     }
+    */
+    
     
     public List<User> findAll(){
         return new ArrayList<>(users);

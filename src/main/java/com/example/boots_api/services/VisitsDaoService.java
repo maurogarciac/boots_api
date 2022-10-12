@@ -16,12 +16,16 @@ public class VisitsDaoService {
     private static ConcurrentLinkedQueue<Visit> visits = GeneralDaoService.getVisitsList();
     private static Integer lastVisitId = -1;
     private static Date dateNow = GeneralDaoService.dateRightNow(true);
+    
+    /*
 
     static{
         visits.add(new Visit(++lastVisitId, GeneralDaoService.findOneById(0), dateNow));
         visits.add(new Visit(++lastVisitId, GeneralDaoService.findOneById(1), dateNow));
         visits.add(new Visit(++lastVisitId, GeneralDaoService.findOneById(2), dateNow));
     }
+    */
+    
     public ConcurrentLinkedQueue<Visit> findAllVisits(){
         return visits;
     }
