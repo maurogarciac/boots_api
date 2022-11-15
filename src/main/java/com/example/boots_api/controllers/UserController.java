@@ -1,7 +1,7 @@
 package com.example.boots_api.controllers;
 
 import java.net.URI;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
@@ -53,7 +53,7 @@ public class UserController {
         return ResponseEntity.created(location).build();
     }
     @PutMapping("/users/id/{id}")
-    public ResponseEntity<User> modifyUser(@PathVariable int id, @RequestBody String username, @RequestBody String name, @RequestBody Date birthDate){
+    public ResponseEntity<User> modifyUser(@PathVariable int id, @RequestBody String username, @RequestBody String name, @RequestBody LocalDate birthDate){
         User user = GeneralDaoService.findOneById(id);
         if(name != null){
             user.setName(name);

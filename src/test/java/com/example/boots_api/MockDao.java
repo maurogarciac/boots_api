@@ -1,8 +1,7 @@
 package com.example.boots_api;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.function.Predicate;
@@ -54,19 +53,6 @@ public class MockDao {
         Predicate<? super User> predicate = user -> user.getUsername().equals(username);
         return userDB.stream().filter(predicate).findFirst().orElse(null);
     }
-    public static Date dateRightNow(Boolean minutes){
-        Date date = new Date();
-        Calendar cal = Calendar.getInstance();
-        cal.set(Calendar.YEAR, 2022);
-        cal.set(Calendar.MONTH, 10);
-        cal.set(Calendar.DATE, 3);
-        if(minutes){
-            cal.set(Calendar.MINUTE, 32);
-            cal.set(Calendar.HOUR, 14);
-        }
-        date = cal.getTime();
-        return date;
-    }
     // ------------------------------------------------users--------
     public List<User> findAll(){
         return new ArrayList<>(userDB);
@@ -97,17 +83,17 @@ public class MockDao {
         return visitDB.stream().filter(predicate).toList();
     }
     public Visit saveVisit(User user){
-        Visit visit = new Visit(++lastVisitId, user, dateRightNow(true));
+        Visit visit = new Visit(++lastVisitId, user, LocalDate.now());
         visitDB.add(visit);
         return visit;
     }
     public Visit saveVisitByUsername(String username){
-        Visit visit = new Visit(++lastVisitId, findOneByUsername(username), dateRightNow(true));
+        Visit visit = new Visit(++lastVisitId, findOneByUsername(username), LocalDate.now());
         visitDB.add(visit);
         return visit;
     }
     public Visit saveVisitByUsernameId(Integer userId){
-        Visit visit = new Visit(++lastVisitId, findOneById(userId), dateRightNow(true));
+        Visit visit = new Visit(++lastVisitId, findOneById(userId), LocalDate.now());
         visitDB.add(visit);
         return visit;
     }

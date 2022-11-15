@@ -3,7 +3,7 @@ package com.example.boots_api.services;
 import com.example.boots_api.beans.User;
 import com.example.boots_api.beans.Visit;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.function.Predicate;
@@ -15,14 +15,12 @@ public class VisitsDaoService {
     
     private static ConcurrentLinkedQueue<Visit> visits = GeneralDaoService.getVisitsList();
     private static Integer lastVisitId = -1;
-    private static Date dateNow = GeneralDaoService.dateRightNow(true);
     
     /*
 
     static{
-        visits.add(new Visit(++lastVisitId, GeneralDaoService.findOneById(0), dateNow));
-        visits.add(new Visit(++lastVisitId, GeneralDaoService.findOneById(1), dateNow));
-        visits.add(new Visit(++lastVisitId, GeneralDaoService.findOneById(2), dateNow));
+        visits.add(new Visit(++lastVisitId, GeneralDaoService.findOneById(0), LocalDate.now()));
+        visits.add(new Visit(++lastVisitId, GeneralDaoService.findOneById(1), LocalDate.now()));
     }
     */
     
@@ -38,17 +36,17 @@ public class VisitsDaoService {
         return visits.stream().filter(predicate).toList();
     }
     public Visit saveVisit(User user){
-        Visit visit = new Visit(++lastVisitId, user, dateNow);
+        Visit visit = new Visit(++lastVisitId, user, LocalDate.now());
         visits.add(visit);
         return visit;
     }
     public Visit saveVisitByUsername(String username){
-        Visit visit = new Visit(++lastVisitId, GeneralDaoService.findOneByUsername(username), dateNow);
+        Visit visit = new Visit(++lastVisitId, GeneralDaoService.findOneByUsername(username), LocalDate.now());
         visits.add(visit);
         return visit;
     }
     public Visit saveVisitByUsernameId(Integer userId){
-        Visit visit = new Visit(++lastVisitId, GeneralDaoService.findOneById(userId), dateNow);
+        Visit visit = new Visit(++lastVisitId, GeneralDaoService.findOneById(userId), LocalDate.now());
         visits.add(visit);
         return visit;
     }

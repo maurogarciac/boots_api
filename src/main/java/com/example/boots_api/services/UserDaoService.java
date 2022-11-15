@@ -18,13 +18,11 @@ public class UserDaoService {
     private static Integer lastUserId = -1;
     
     /*
-    private static Date dateNow = GeneralDaoService.dateRightNow(false);
-    
     
     static{
-    users.add(new User(++lastUserId, "aulop", "Aurelio Lopez", dateNow));
-    users.add(new User(++lastUserId, "maling", "Mario Linguini", dateNow));
-    users.add(new User(++lastUserId, "Roboca", "Roberto Casanza", dateNow));
+    users.add(new User(++lastUserId, "aulop", "Aurelio Lopez", LocalDate.now().minusYears(25));
+    users.add(new User(++lastUserId, "maling", "Mario Linguini", LocalDate.now().minusYears(20)));
+    users.add(new User(++lastUserId, "Roboca", "Roberto Casanza", LocalDate.now().minusYears(25)));
     }
     */
     
